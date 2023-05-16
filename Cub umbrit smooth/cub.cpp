@@ -17,9 +17,9 @@ void myInit()
 	GLfloat light_specular[] = { 1.0, 1.0, 1.0, 1.0 };
 
 	// pozitia sursei de lumina nu este cea implicita
-	GLfloat light_position[] = { 1.0, 0.0, 0.0, 0.0 };
+	GLfloat light_position[] = { 0.0, 1.0, 0.0, 0.0 };
 	// sursa de lumina pe axa x la infinit
-	GLfloat global_ambient[] = { 0.75, 0.75, 0.75, 1.0 };
+	GLfloat global_ambient[] = { 1.0, 1.0, 1.0, 1.0 };
 
 	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
@@ -27,7 +27,8 @@ void myInit()
 	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
 
 	// lumina ambientala in scena
-	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, global_ambient);
+
+	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
 
 
 	glFrontFace(GL_CW); // orientarea implicita a varfurilor in sensul rotirii acelor
@@ -36,78 +37,12 @@ void myInit()
 
 	glEnable(GL_AUTO_NORMAL); // activare calculare normale daca varfurile s-au determinat cu GL_MAP2_VERTEX_3 sau GL_MAP2_VERTEX_4
 	glEnable(GL_NORMALIZE); // activare normalizare (vectori unitari) vectori
-
+glEnable(GL_SMOOTH);
 	glEnable(GL_DEPTH_TEST); // activare test adancime
+	
 }
 
-void deseneazaCub()
-{
-	glBegin(GL_QUAD_STRIP); 
-	{
-		glColor3f(1.0f, 0.0f, 1.0f);
-		glVertex3f(-0.5f, 0.5f, 0.5f);
 
-		glColor3f(1.0f, 0.0f, 0.0f);
-		glVertex3f(-0.5f, -0.5f, 0.5f);
-
-		glColor3f(1.0f, 1.0f, 1.0f);
-		glVertex3f(0.5f, 0.5f, 0.5f);
-
-		glColor3f(1.0f, 1.0f, 0.0f);
-		glVertex3f(0.5f, -0.5f, 0.5f);
-
-		glColor3f(0.0f, 1.0f, 1.0f);
-		glVertex3f(0.5f, 0.5f, -0.5f);
-
-		glColor3f(0.0f, 1.0f, 0.0f);
-		glVertex3f(0.5f, -0.5f, -0.5f);
-
-		glColor3f(0.0f, 0.0f, 1.0f);
-		glVertex3f(-0.5f, 0.5f, -0.5f);
-
-		glColor3f(0.0f, 0.0f, 0.0f);
-		glVertex3f(-0.5f, -0.5f, -0.5f);
-
-		glColor3f(1.0f, 0.0f, 1.0f);
-		glVertex3f(-0.5f, 0.5f, 0.5f);
-
-		glColor3f(1.0f, 0.0f, 0.0f);
-		glVertex3f(-0.5f, -0.5f, 0.5f);
-	}
-	glEnd();
-
-	glBegin(GL_QUADS);
-	{
-		glColor3f(1.0f, 0.0f, 1.0f);
-		glVertex3f(-0.5f, 0.5f, 0.5f);
-
-		glColor3f(1.0f, 1.0f, 1.0f);
-		glVertex3f(0.5f, 0.5f, 0.5f);
-
-		glColor3f(0.0f, 1.0f, 1.0f);
-		glVertex3f(0.5f, 0.5f, -0.5f);
-
-		glColor3f(0.0f, 0.0f, 1.0f);
-		glVertex3f(-0.5f, 0.5f, -0.5f);
-	}
-	glEnd();
-
-	glBegin(GL_QUADS);
-	{
-		glColor3f(1.0f, 0.0f, 0.0f);
-		glVertex3f(-0.5f, -0.5f, 0.5f);
-
-		glColor3f(1.0f, 1.0f, 0.0f);
-		glVertex3f(0.5f, -0.5f, 0.5f);
-
-		glColor3f(0.0f, 1.0f, 0.0f);
-		glVertex3f(0.5f, -0.5f, -0.5f);
-
-		glColor3f(0.0f, 0.0f, 0.0f);
-		glVertex3f(-0.5f, -0.5f, -0.5f);
-	}
-	glEnd();
-}
 
 void CALLBACK display()
 {
